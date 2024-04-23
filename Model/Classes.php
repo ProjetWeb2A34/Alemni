@@ -1,6 +1,53 @@
 <?php
 class Classes
 {
+    private ?int $id_classe;
+    private ?string $nom_classe; // Adjusted property
+    private ?int $nb_etudiant;
+
+    public function __construct($id_classe, $nom_classe, $nb_etudiant) // Adjusted constructor
+    {
+        $this->id_classe = $id_classe;
+        $this->nom_classe = $nom_classe; // Adjusted assignment
+        $this->nb_etudiant = $nb_etudiant;
+    }
+
+    public function getIdClasse()
+    {
+        return $this->id_classe;
+    }
+
+    public function setIdClasse($id_classe)
+    {
+        $this->id_classe = $id_classe;
+    }
+
+    public function getNomClasse() // Getter for NomClasse
+    {
+        return $this->nom_classe;
+    }
+
+    public function setNomClasse($nom_classe) // Setter for NomClasse
+    {
+        $this->nom_classe = $nom_classe;
+    }
+
+    public function getNbEtudiant()
+    {
+        return $this->nb_etudiant;
+    }
+
+    public function setNbEtudiant($nb_etudiant)
+    {
+        $this->nb_etudiant = $nb_etudiant;
+    }
+}
+?>
+
+
+<?php
+/*class Classes
+{
     private ?int $IdClasse;
     private ?int $IdTuteur ;
     private ?int $nb_etudiant ;
@@ -14,27 +61,7 @@ class Classes
         $this->nb_etudiant = $nbEtudiant;
         $this->IdCours = $idCours;
     }
-    /*public function __construct(
-        $idClasse = null, 
-        $idTuteur = null, 
-        $nbEtudiant = null, 
-        $idCours = null
-    ) {
-        // If all parameters are null, treat it as a default constructor
-        if ($idClasse === null && $idTuteur === null && $nbEtudiant === null && $idCours === null) {
-            // Initialize properties with default values if needed
-            $this->IdClasse = 0;
-            $this->IdTuteur = 0;
-            $this->nb_etudiant = 0;
-            $this->IdCours = 0;
-        } else {
-            // Otherwise, assign the provided values to the properties
-            $this->IdClasse = $idClasse;
-            $this->IdTuteur = $idTuteur;
-            $this->nb_etudiant = $nbEtudiant;
-            $this->IdCours = $idCours;
-        }
-    }*/
+    
 
     public function getIdClasse()
     {
@@ -83,5 +110,5 @@ class Classes
 
         return $this;
     }
-}
+}*/
 ?>

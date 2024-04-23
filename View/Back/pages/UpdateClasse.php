@@ -14,24 +14,21 @@ $classC = new ClassesC();
 if(isset($_POST["Update"])) {
     // Check if all required fields are set and not empty
     if (
-        isset($_POST["IdClasse"]) &&
-        isset($_POST["IdTuteur"]) &&
+        isset($_POST["id_classe"]) &&
+        isset($_POST["NomClasse"]) &&
         isset($_POST["nb_etudiant"]) &&
-        isset($_POST["IdCours"]) &&
-        !empty($_POST["IdClasse"]) &&
-        !empty($_POST["IdTuteur"]) &&
-        !empty($_POST["nb_etudiant"]) &&
-        !empty($_POST["IdCours"])
+        !empty($_POST["id_classe"]) &&
+        !empty($_POST["NomClasse"]) &&
+        !empty($_POST["nb_etudiant"])
     ) {
         // Create a new class object
         $class = new Classes(
-            $_POST['IdClasse'],
-            $_POST['IdTuteur'],
-            $_POST['nb_etudiant'],
-            $_POST['IdCours']
+            $_POST['id_classe'],
+            $_POST['NomClasse'],
+            $_POST['nb_etudiant']
         );
         // Call the updateClass method to update the class information
-        $classC->updateClass($class, $_POST["IdClasse"]);
+        $classC->updateClass($class, $_POST["id_classe"]);
         // Redirect to the class list page after updating
         header('Location:ListClasse.php');
         exit; // Exit to prevent further execution
@@ -54,26 +51,26 @@ include ('Header.php');
 
     <?php
     // Check if the update button is clicked and a class ID is provided
-    if (isset($_POST['update']) && isset($_POST['id'])) {
+    if (isset($_POST['Update']) && isset($_POST['id'])) {
         // Get the class details by ID
         $class = $classC->showClass($_POST['id']);
     ?>
 
-        <form action="" method="POST" class="Classes">
+        <form action="" method="POST" class="Classes" onsubmit="return validateForm()">
             <table border="1" align="center">
                 <tr>
                     <td>
-                        <label for="IdClasse">Id Class:
+                        <label for="id_classe">Id Class:
                         </label>
                     </td>
-                    <td><input type="text" name="IdClasse" id="IdClasse" value="<?php echo $class['IdClasse']; ?>" maxlength="20"></td>
+                    <td><input type="text" name="id_classe" id="id_classe" value="<?php echo $class['id_classe']; ?>" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="IdTuteur">Tutor Id:
+                        <label for="NomClasse">Class Name:
                         </label>
                     </td>
-                    <td><input type="text" name="IdTuteur" id="IdTuteur" value="<?php echo $class['IdTuteur']; ?>" maxlength="20"></td>
+                    <td><input type="text" name="NomClasse" id="NomClasse" value="<?php echo $class['NomClasse']; ?>" maxlength="50"></td>
                 </tr>
                 <tr>
                     <td>
@@ -81,13 +78,6 @@ include ('Header.php');
                         </label>
                     </td>
                     <td><input type="text" name="nb_etudiant" id="nb_etudiant" value="<?php echo $class['nb_etudiant']; ?>" maxlength="20"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="IdCours">Course Id:
-                        </label>
-                    </td>
-                    <td><input type="text" name="IdCours" id="IdCours" value="<?php echo $class['IdCours']; ?>" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -123,4 +113,34 @@ include ('Footer.php');
 </body>
 
 </html>
+<script>
+    function validateForm() {
+        //var idClasse = document.getElementById("id_classe").value;
+        var nomClasse = document.getElementById("NomClasse").value;
+        var nbEtudiant = document.getElementById("nb_etudiant").value;
+
+        /*if (idClasse.length !== 8) {
+            alert("Id Class must be 8 digits long.");
+            return false;
+        }*/
+
+        if (nomClasse.length < 3 || nomClasse.length > 50) {
+            alert("Class Name must be between 3 and 50 characters.");
+            return false;
+        }
+
+        if (isNaN(nbEtudiant) || nbEtudiant < 1 || nbEtudiant > 30) {
+            alert("Number of Students must be a numeric value between 1 and 30.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+
+
+
+
+
 
