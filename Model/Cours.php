@@ -1,95 +1,57 @@
 <?php
+class Cours
+{
+    private ?int $IdCours;
+    private ?string $NomCours;
+    private ?string $NomTuteur;
+    private ?int $id_classe;
 
-<?php
-
-class Cours {
-    
-    private $id_cours;
-    private $nom_cours;
-    private $nb_tuteur;
-    private $niveau;
-    private $db;
-
-    public function __construct($id_cours, $nom_cours, $nb_tuteur, $niveau, $db) {
-        $this->id_cours = $id_cours;
-        $this->nom_cours = $nom_cours;
-        $this->nb_tuteur = $nb_tuteur;
-        $this->niveau = $niveau;
-        $this->db = $db;
-    }
-    public function createCourse($nom_cours, $nb_tuteur, $niveau) {
-        $query = "INSERT INTO Cours (nom_cours, nb_tuteur, niveau) VALUES (?, ?, ?)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("sii", $nom_cours, $nb_tuteur, $niveau);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+    public function __construct($IdCours, $NomCours, $NomTuteur, $id_classe)
+    {
+        $this->IdCours = $IdCours;
+        $this->NomCours = $NomCours;
+        $this->NomTuteur = $NomTuteur;
+        $this->id_classe = $id_classe;
     }
 
-    public function getAllCourses() {
-        $query = "SELECT * FROM Cours";
-        $result = $this->db->query($query);
-        $courses = [];
-        while ($row = $result->fetch_assoc()) {
-            $courses[] = $row;
-        }
-        return $courses;
+    public function getIdCours()
+    {
+        return $this->IdCours;
     }
 
-    public function getCourseById($id_cours) {
-        $query = "SELECT * FROM Cours WHERE id_cours = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $id_cours);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
+    public function setIdCours($IdCours)
+    {
+        $this->IdCours = $IdCours;
     }
 
-    public function updateCourse($id_cours, $nom_cours, $nb_tuteur, $niveau) {
-        $query = "UPDATE Cours SET nom_cours = ?, nb_tuteur = ?, niveau = ? WHERE id_cours = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("siii", $nom_cours, $nb_tuteur, $niveau, $id_cours);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+    public function getNomCours()
+    {
+        return $this->NomCours;
     }
 
-    public function deleteCourse($id_cours) {
-        $query = "DELETE FROM Cours WHERE id_cours = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $id_cours);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+    public function setNomCours($NomCours)
+    {
+        $this->NomCours = $NomCours;
+    }
+
+    public function getNomTuteur()
+    {
+        return $this->NomTuteur;
+    }
+
+    public function setNomTuteur($NomTuteur)
+    {
+        $this->NomTuteur = $NomTuteur;
+    }
+
+    public function getIdClasse()
+    {
+        return $this->id_classe;
+    }
+
+    public function setIdClasse($id_classe)
+    {
+        $this->id_classe = $id_classe;
     }
 }
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>

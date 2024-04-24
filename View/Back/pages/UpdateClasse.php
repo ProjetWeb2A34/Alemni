@@ -29,12 +29,11 @@ if(isset($_POST["Update"])) {
         );
         // Call the updateClass method to update the class information
         $classC->updateClass($class, $_POST["id_classe"]);
-        // Redirect to the class list page after updating
         header('Location:ListClasse.php');
         exit; // Exit to prevent further execution
     } else {
         // If any required field is missing, set an error message
-        $error = "Missing information";
+        //$error = "Missing information";
     }
 }
 
