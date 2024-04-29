@@ -73,7 +73,6 @@ class CoursC
     }
     public function getCoursesForClass($id_classe)
     {
-        //echo 'entered function';
         $sql = "SELECT * FROM Cours WHERE id_classe = :id_classe";
         $db = config::getConnexion();
         try {

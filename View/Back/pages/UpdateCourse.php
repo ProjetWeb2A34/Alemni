@@ -16,11 +16,11 @@ if(isset($_POST["update"])) {
         isset($_POST["id_cours"]) &&
         isset($_POST["NomCours"]) &&
         isset($_POST["NomTuteur"]) &&
-        isset($_POST["id_classe"]) && // Ensure id_classe is set
+        isset($_POST["id_classe"]) && 
         !empty($_POST["id_cours"]) &&
         !empty($_POST["NomCours"]) &&
         !empty($_POST["NomTuteur"]) &&
-        !empty($_POST["id_classe"])   // Ensure id_classe is not empty
+        !empty($_POST["id_classe"])   
     ) {
         // Create a new course object
         $course = new Cours(
@@ -29,13 +29,13 @@ if(isset($_POST["update"])) {
             $_POST['NomTuteur'],
             $_POST["id_classe"]
         );
-        // Call the updateCourse method to update the course information
+        
         $coursC->updateCourse($course, $_POST["id_cours"]);
         header("Location: ListClasse.php");
 //        header('Location:GestionCours.php?id=' . $_POST["id_classe"]);
         exit; 
     } else {
-        // If any required field is missing, set an error message
+        
         //$error = "Missing information";
     }
 }
@@ -55,7 +55,7 @@ include ('Header.php');
     <?php
     // Check if the update button is clicked and a course ID is provided
     if (isset($_POST['Update']) && isset($_POST['id'])) {
-        // Get the course details by ID
+        
         $course = $coursC->showCourse($_POST['id']);
         //echo "here is :" . $course->['IdCours'] ;
     ?>
@@ -99,7 +99,6 @@ include ('Header.php');
         
     <?php
     } else {
-        // If update button is not clicked or course ID is not provided, show an error message
         $error = "No course selected for update";
         echo $error;
     }
