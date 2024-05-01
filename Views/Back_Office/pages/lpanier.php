@@ -9,9 +9,9 @@ include ('Header.php');
 ?>
 <div>
 <section>
-        <table>
+        <table class="table align-items-center justify-content-center mb-0">
             <tr>
-                <th>ID panier</th>
+                <th>ID produit</th>
                 <th>Nom cour</th>
                 <th>Prix</th>
                 <th>Quantité</th>
@@ -21,14 +21,15 @@ include ('Header.php');
             <tr>
                 <td><?php echo $panier['id_p']; ?></td>
                 <td><?php echo $panier['nom_p']; ?></td>
-                <td><?php echo $panier['prix']; ?></td>
+                <td><?php echo $panier['prix']; ?>$</td>
                 <td><?php echo $panier['qunatite']; ?></td>
                 
                 
             </tr>
             <?php } ?>
-        </table>
-    </section>
+           
+   
+
 </div>
 <?php
 include ('Footer.php');

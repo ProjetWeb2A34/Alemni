@@ -33,17 +33,6 @@ class panierC
 			echo 'Erreur: ' . $e->getMessage();
 		}
 	}
-	public function chercherreclamation($qunatite)
-        {
-            $query = "SELECT * FROM panier WHERE qunatite LIKE '%$qunatite%'";
-            $conn = config::getConnexion();
-            try {
-                $result = $conn->query($query);
-                return $result->fetchAll();
-            } catch (PDOException $e) {
-                echo "Erreur: " . $e->getMessage();
-            }}
-       
 
 
 

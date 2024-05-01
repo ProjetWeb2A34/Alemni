@@ -76,6 +76,7 @@
   <!-- dpanier-->
 
   <a href="panierL.php" class="link55">Panier <samp>8</samp></a>
+  <a href="panierL.php">aa</a>
   <section class="prod_liste">
     <form action="" class="produit">
       <div class="imagep">
@@ -83,7 +84,7 @@
       </div>
       <div class="contentm">
         <h4 class="name1">Math</h4>
-        <h2 class="price">1h--> 15$ </h2>
+        <h2 class="price">1h-->- 15$ </h2>
         <a href="addpanier.php" name="b1" id="b1" class="idp">Ajouter au panier</a>
       </div>
     </form>

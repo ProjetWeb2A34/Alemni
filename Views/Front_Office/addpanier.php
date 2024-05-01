@@ -31,7 +31,34 @@ include('header.php')
 
 <!-- offer section -->
 <!-- adddpanier-->
-<form method="post" class="form" action="#">
+<form method="post" class="form" name="myForm" onsubmit="return validateForm()" action="#">
+<style>
+        table {
+          background-color: white;
+          margin: 0 auto;
+          /* Centers the table horizontally */
+          width: 80%;
+          /* Sets the width of the table */
+          max-width: 800px;
+          /* Sets the maximum width of the table */
+          border-collapse: collapse;
+          /* Collapses the borders between table cells */
+        }
+
+        td {
+
+          padding: 10px;
+          /* Adds padding around the table cells */
+          text-align: left;
+          /* Aligns the text to the left */
+        }
+
+        label {
+          color: black;
+          font-weight: bold;
+          /* Makes the label text bold */
+        }
+      </style>
   <table>
 
     <tr>
@@ -60,10 +87,10 @@ include('header.php')
 
     <tr align="center">
       <td>
-        <input type="submit" name="ajout" value="Save">
+        <input class="link55" type="submit" name="ajout" value="Save">
       </td>
       <td>
-        <input type="annuler" value="Annuler" onclick="window.location.href='index.html';">
+        <input class="link55" type="annuler" value="Annuler" onclick="window.location.href='index.html';">
       </td>
     </tr>
   </table>
@@ -72,6 +99,45 @@ include('header.php')
 
 
 </form>
+<script>
+  function validateForm() {
+    let x = document.forms["myForm"]["nom_p"].value;
+    if (x !== "math" && x !== "physique" && x !== "prog") {
+        alert("Name cour must be 'math', 'physique', or 'prog'");
+        return false;
+    }
+
+    let Y = document.forms["myForm"]["prix"].value;
+    if (Y !== "14") {
+        alert("Prix must be 14$");
+        return false;
+    }
+
+    let w = document.forms["myForm"]["qunatite"].value;
+    if (w < 1 || w > 7) {
+        alert("Quantite must be between 1 and 7");
+        return false;
+    }
+
+    /*let x = document.forms["myForm"]["nom_p"].value;
+            if (x == "") {
+                alert("name cour must be filled out");
+                return false;
+            }
+            let Y = document.forms["myForm"]["prix"].value;
+            if (Y == "") {
+                alert("Prix must be filled out");
+                return false;
+            }
+            let w = document.forms["myForm"]["qunatite"].value;
+            if (w == "") {
+                alert(" must be filled out");
+                return false;
+            }*/
+  }
+
+
+</script>
 
 
 <!---addFpanier-->

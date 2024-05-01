@@ -97,7 +97,7 @@ include_once '../../Controller/panierC.php';
                   <a class="nav-link" href="about.html"> About </a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="program.html"> Programs </a>
+                  <a class="nav-link" href="program.html"> UPDATE </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="contact.html"> Contact us</a>
@@ -113,7 +113,7 @@ include_once '../../Controller/panierC.php';
 
   <!-- offer section -->
   <!-- uppanier-->
-  <button><a href="panierL.php">Retour à la liste des panier</a></button>
+  <button class="link55"><a href="panierL.php" >Retour à la liste des panier</a></button>
   <div id="error">
     <?php echo $error; ?>
   </div>
@@ -158,21 +158,21 @@ include_once '../../Controller/panierC.php';
             <label for="id_p">Id :
             </label>
           </td>
-          <td><input type="text" name="id_p" id="IDR" value="<?php echo $panier['id_p']; ?>"></td>
+          <td><input type="text" name="id_p" id="ID" value="<?php echo $panier['id_p']; ?>"></td>
         </tr>
         <tr>
           <td>
             <label for="nom_p">nom de cour:
             </label>
           </td>
-          <td><input type="text" name="nom_p" id="typer" value="<?php echo $panier['nom_p']; ?>"></td>
+          <td><input type="text" name="nom_p" id="nom_p" value="<?php echo $panier['nom_p']; ?>"></td>
         </tr>
         <tr>
           <td>
             <label for="prix">prix:
             </label>
           </td>
-          <td><input type="text" name="prix" id="dater" value="<?php echo $panier['prix']; ?>"></td>
+          <td><input type="text" name="prix" id="prix" value="<?php echo $panier['prix']; ?>"></td>
         </tr>
         <tr>
           <td>
@@ -183,11 +183,12 @@ include_once '../../Controller/panierC.php';
             <input type="text" name="qunatite" value="<?php echo $panier['qunatite']; ?>" id="sujet">
           </td>
         </tr>
+        <td>
     
-            <input type="submit" value="Modifier" name="Modifier">
+            <input type="submit" class="link55" value="Modifier" name="Modifier">
           </td>
           <td>
-            <input type="reset" value="Annuler">
+            <input type="reset" class="link55" value="Annuler">
           </td>
         </tr>
       </table>
@@ -195,6 +196,45 @@ include_once '../../Controller/panierC.php';
     <?php
   }
   ?>
+  <script>
+  function validateForm() {
+    let x = document.forms["myForm"]["nom_p"].value;
+    if (x !== "math" && x !== "physique" && x !== "prog") {
+        alert("Name cour must be 'math', 'physique', or 'prog'");
+        return false;
+    }
+
+    let Y = document.forms["myForm"]["prix"].value;
+    if (Y !== "14") {
+        alert("Prix must be 14$");
+        return false;
+    }
+
+    let w = document.forms["myForm"]["qunatite"].value;
+    if (w < 1 || w > 7) {
+        alert("Quantite must be between 1 and 7");
+        return false;
+    }
+
+    /*let x = document.forms["myForm"]["nom_p"].value;
+            if (x == "") {
+                alert("name cour must be filled out");
+                return false;
+            }
+            let Y = document.forms["myForm"]["prix"].value;
+            if (Y == "") {
+                alert("Prix must be filled out");
+                return false;
+            }
+            let w = document.forms["myForm"]["qunatite"].value;
+            if (w == "") {
+                alert(" must be filled out");
+                return false;
+            }*/
+  }
+
+
+</script>
 
   <!---upFpanier-->
   <!-- info section -->
