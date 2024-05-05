@@ -1,0 +1,4 @@
+current function (able to change):
+calender ;
+pdf courses;
+chatbot;(students ask questions and it answers)

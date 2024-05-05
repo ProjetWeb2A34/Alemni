@@ -17,8 +17,34 @@ class ClassesC
             die('Error:' . $e->getMessage());
         }
     }
-
     function deleteClass($id)
+    {
+        $db = config::getConnexion();
+    
+        // Delete all courses associated with the class
+        $sqlDeleteCourses = "DELETE FROM Cours WHERE id_classe = :id_classe";
+        $stmtDeleteCourses = $db->prepare($sqlDeleteCourses);
+        $stmtDeleteCourses->bindValue(':id_classe', $id);
+    
+        try {
+            $stmtDeleteCourses->execute();
+        } catch (Exception $e) {
+            die('Error deleting courses:' . $e->getMessage());
+        }
+    
+        // Now, delete the class itself
+        $sqlDeleteClass = "DELETE FROM Classes WHERE id_classe = :id";
+        $stmtDeleteClass = $db->prepare($sqlDeleteClass);
+        $stmtDeleteClass->bindValue(':id', $id);
+    
+        try {
+            $stmtDeleteClass->execute();
+        } catch (Exception $e) {
+            die('Error deleting class:' . $e->getMessage());
+        }
+    }
+
+    /*function deleteClass($id)
     {
         $sql = "DELETE FROM Classes WHERE id_classe = :id";
         $db = config::getConnexion();
@@ -30,7 +56,7 @@ class ClassesC
         } catch (Exception $e) {
             die('Error:' . $e->getMessage());
         }
-    }
+    }*/
 
     function addClass($classes)
     {

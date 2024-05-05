@@ -93,7 +93,12 @@ include ('Header.php');
 <script>
     function validateForm() {
         var nbEtudiant = document.getElementById("nb_etudiant").value;
+        var NomClasse= document.getElementById("NomClasse").value;
 
+        if (NomClasse.length < 3 || NomClasse.length > 50) {
+            alert("Class name must be between 3 and 50 characters.");
+            return false;
+        }
         if (isNaN(nbEtudiant) || nbEtudiant < 1 || nbEtudiant > 35) {
             alert("Number of Students must be a numeric value between 1 and 35.");
             return false;

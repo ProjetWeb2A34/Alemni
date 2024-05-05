@@ -34,7 +34,8 @@ $list = $classC->listClasses();
                                     // Get the list of courses for the current class
                                     $courses = $classC->listCoursesForClass($class['id_classe']);
                                     foreach ($courses as $course) {
-                                        echo $course['NomCours'] . "<br>"; // Assuming 'course_name' is the column name for the course name
+                                        // Make the course name a link to PDFGenerator.php with course name as parameter
+                                        echo '<a href="PDFGenerator.php?course_name=' . urlencode($course['NomCours']) . '">' . $course['NomCours'] . '</a><br>';
                                     }
                                     ?>
                                 </td>
@@ -51,4 +52,5 @@ $list = $classC->listClasses();
 <?php
 include 'FooterF.php';
 ?>
+
 
