@@ -188,7 +188,7 @@ include_once '../../Controller/panierC.php';
             <input type="submit" class="link55" value="Modifier" name="Modifier">
           </td>
           <td>
-            <input type="reset" class="link55" value="Annuler">
+            <input type="reset" class="link55" value="Annuler" onclick="window.location.href='panierL.php';">
           </td>
         </tr>
       </table>

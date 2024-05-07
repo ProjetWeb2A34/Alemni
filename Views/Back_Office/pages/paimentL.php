@@ -3,18 +3,19 @@ include_once '../../../Controller/paiementCruda.php';
 
 // Define getPrixFromPanier function
 function getPrixFromPanier($prix_p) {
-    $sql = "SELECT prix FROM panier WHERE id_p = :id_p";
-        $db = config::getConnexion();
-        try {
-            $query = $db->prepare($sql);
-            $query->execute(['id_p' => $prix_p]);
-            $row = $query->fetch(PDO::FETCH_ASSOC);
-            return $row['prix'];
-        } catch (PDOException $e) {
-            echo 'Erreur: ' . $e->getMessage();
-            return null;
-        }
+    $sql = "SELECT prix, qunatite FROM panier WHERE id_p = :id_p";
+    $db = config::getConnexion();
+    try {
+        $query = $db->prepare($sql);
+        $query->execute(['id_p' => $prix_p]);
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row; // Return both prix and qunatite
+    } catch (PDOException $e) {
+        echo 'Erreur: ' . $e->getMessage();
+        return null;
+    }
 }
+
 
 $paiementCrud = new paiementCrud();
 $listepaiement = $paiementCrud->Afficherpaiement(); 
@@ -40,13 +41,16 @@ include 'Header.php';
                     <td><?php echo str_repeat('*', strlen($paiement['mot_cart'])); ?></td>
                     <td><?php echo $paiement['email']; ?></td>
                     <td>
-                        <?php
-                        // Retrieve prix from panier based on prix_p from paiement
-                        $prix_p = $paiement['prix_p'];
-                        $prix = getPrixFromPanier($prix_p); // Assuming you have a function to fetch prix from panier by prix_p
-                        echo $prix;
-                        ?>$
-                    </td> 
+    <?php
+    // Retrieve prix and qunatite from panier based on prix_p from paiement
+    $prix_p = $paiement['prix_p'];
+    $panierInfo = getPrixFromPanier($prix_p);
+    $prix = $panierInfo['prix'];
+    $quantite = $panierInfo['qunatite'];
+    $totalPrixProduit = $prix * $quantite;
+    echo $totalPrixProduit;
+    ?>$
+</td>
                     <td><a href="deletepaiement.php?idpai=<?php echo $paiement['idpai']; ?>">supprime</a></td>
                     <td>
                         <form method="POST" action="updatepaiement.php">

@@ -36,6 +36,35 @@ include('header.php');
 ?>
 
 <form method="post" class="form" name="myForm" onsubmit="return validateForm()" action="#">
+<style>
+        table {
+          background-color: white;
+          margin: 0 auto;
+          /* Centers the table horizontally */
+          width: 80%;
+          /* Sets the width of the table */
+          max-width: 800px;
+          /* Sets the maximum width of the table */
+          border-collapse: collapse;
+          /* Collapses the borders between table cells */
+        }
+
+        td {
+
+          padding: 10px;
+          /* Adds padding around the table cells */
+          text-align: left;
+          /* Aligns the text to the left */
+        }
+
+        label {
+          color: black;
+          font-weight: bold;
+          /* Makes the label text bold */
+        }
+      </style>
+
+
   <table>
     <tr>
       <td><label for="num_cart">Nom de la Carte:</label></td>

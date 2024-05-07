@@ -4,7 +4,10 @@ include_once '../../Controller/panierC.php';
 $panierC = new panierC();
 $listepanier = $panierC->Afficherpanier();
 
+// Calculate total price
+$totalPrice = 0;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,17 +21,18 @@ $listepanier = $panierC->Afficherpanier();
 <body class="panier">
     <a href="indexPANIER1.html" class="link55">boutique</a>
     <a href="addpaiement.php" class="link55">paiement</a>
+    <!--<input type="text" id="searchTerm" placeholder="search">-->
     
     <section>
         <table>
             <tr>
                 <th>ID produit</th>
                 <th>Nom cour</th>
-                <th>Prix</th>
+                <th>Prix unitaire</th>
                 <th>Quantité</th>
+                <th>Prix total</th> <!-- Nouvelle colonne -->
                 <th>update</th>
                 <th>action</th>
-                
             </tr>
             <?php foreach ($listepanier as $panier) { ?>
                 <tr>
@@ -36,6 +40,8 @@ $listepanier = $panierC->Afficherpanier();
                     <td><?php echo $panier['nom_p']; ?></td>
                     <td><?php echo $panier['prix']; ?>$</td>
                     <td><?php echo $panier['qunatite']; ?></td>
+                    <td><?php echo $panier['prix'] * $panier['qunatite']; ?>$</td> <!-- Calcul du prix total -->
+                    
                     <td>
                         <form method="POST" action="updatepaner.php">
                             <input type="submit" class="link55" name="Modifier" value="Modifier">
@@ -43,17 +49,20 @@ $listepanier = $panierC->Afficherpanier();
                         </form>
                     </td>
                     <td><a href="deletepanier.php?id_p=<?php echo $panier['id_p']; ?>"><img src="images/d55.png" alt=""></a></td>
-
                 </tr>
-
-
-                <tr class="total">
-                    <th>total:$</th>
-                </tr>
+                <?php 
+                // Increment total price
+                $totalPrice += $panier['prix'] * $panier['qunatite']; 
+                ?>
             <?php } ?>
         </table>
-    </section>
-
+        
+        <table>
+            <tr class="total">
+                <th>Total Price: <?php echo $totalPrice; ?>$</th>
+            </tr>
+        </table>
+    </section>  
 </body>
 
 </html>

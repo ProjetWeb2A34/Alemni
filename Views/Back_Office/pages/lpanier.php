@@ -15,6 +15,7 @@ include ('Header.php');
                 <th>Nom cour</th>
                 <th>Prix</th>
                 <th>Quantité</th>
+                <th>Action</th>
                
             </tr>
             <?php foreach ($listepanier as $panier) { ?>
@@ -23,6 +24,8 @@ include ('Header.php');
                 <td><?php echo $panier['nom_p']; ?></td>
                 <td><?php echo $panier['prix']; ?>$</td>
                 <td><?php echo $panier['qunatite']; ?></td>
+                <td><a href="del.php?id_p=<?php echo $panier['id_p']; ?>">supp</a></td>
+                
                 
                 
             </tr>

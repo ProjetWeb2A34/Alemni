@@ -90,7 +90,7 @@ include('header.php')
         <input class="link55" type="submit" name="ajout" value="Save">
       </td>
       <td>
-        <input class="link55" type="annuler" value="Annuler" onclick="window.location.href='index.html';">
+        <input class="link55" type="annuler" value="Annuler" onclick="window.location.href='indexPANIER1.html';">
       </td>
     </tr>
   </table>
