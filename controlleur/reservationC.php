@@ -1,6 +1,7 @@
 <?php
 include 'C:\xampp\htdocs\projetweb2\config.php';
 include 'C:\xampp\htdocs\projetweb2\model\reservation.php';
+require_once 'C:\xampp\htdocs\projetweb2\Model\HistoriqueDAO.php';
 
 class ReservationC
 {
@@ -11,6 +12,7 @@ class ReservationC
         try {
             $query = $db->prepare($sql);
             $query->execute();
+            HistoriqueDAO::addHistorique('listing', 'reservation', -1);
             return $query->fetchAll();
         } catch (Exception $e) {
             throw new Exception('Error listing reservations: ' . $e->getMessage());
@@ -43,11 +45,18 @@ class ReservationC
                 'montant_a_payer' => $reservation->getMontantAPayer(),
                 'statut_reservation' => $reservation->getStatutReservation(),
             ]);
-            return $db->lastInsertId(); // returns last inserted ID
+    
+            // Get the ID of the last inserted reservation
+            $reservationId = $db->lastInsertId();
+            HistoriqueDAO::addHistorique("Création", "Réservation", $reservationId);
+    
+            return $reservationId; // returns last inserted ID
         } catch (Exception $e) {
             throw new Exception('Error adding reservation: ' . $e->getMessage());
         }
     }
+    
+    
 
     public function updateReservation($reservation)
     {
@@ -62,7 +71,12 @@ class ReservationC
                 'statut_reservation' => $reservation->getStatutReservation(),
                 'id_reservation' => $reservation->getIdReservation(),
             ]);
+            
+        // Ajout de l'historique
+        HistoriqueDAO::addHistorique("Modification", "Réservation", $reservation->getIdReservation());
             return $query->rowCount(); // returns number of rows affected
+
+            
         } catch (Exception $e) {
             throw new Exception('Error updating reservation: ' . $e->getMessage());
         }
@@ -76,10 +90,29 @@ class ReservationC
             $req = $db->prepare($sql);
             $req->bindValue(':id_reservation', $id_reservation);
             $req->execute();
+            HistoriqueDAO::addHistorique("Suppression", "Réservation", $id_reservation);
             return $req->rowCount(); // returns number of rows affected
         } catch (Exception $e) {
             throw new Exception('Error deleting reservation: ' . $e->getMessage());
         }
     }
+
+    public function getReservationStats()
+{
+    $sql = "SELECT COUNT(*) AS total_reservations, 
+                   MIN(date_reservation) AS earliest_reservation, 
+                   MAX(date_reservation) AS latest_reservation, 
+                   AVG(num_tickets) AS average_tickets
+            FROM reservation";
+    $db = config::getConnexion();
+    try {
+        $query = $db->query($sql);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        throw new Exception('Error retrieving reservation stats: ' . $e->getMessage());
+    }
 }
+
+}
+
 ?>

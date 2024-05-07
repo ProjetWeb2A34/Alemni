@@ -17,7 +17,20 @@ include 'C:\xampp\htdocs\projetweb2\controlleur\eventC.php';
 require_once 'C:\xampp\htdocs\projetweb2\config.php';
 include_once 'C:\xampp\htdocs\projetweb2\model\event.php';
 $eventControlleur = new eventC();
-$events = $eventControlleur->listEvents(); // Fetch the list of events using your eventC class.
+$events = $eventControlleur->listEvents();
+
+
+if (isset($_REQUEST['search'])) {
+  $listeEvents = $eventControlleur->searchevenement($_POST['search_text']); // Utilisation de $eventControlleur
+} elseif (isset($_REQUEST['tri'])) {
+  $listeEvents = $eventControlleur->trievent(); // Utilisation de $eventControlleur
+} else {
+  $listeEvents = $eventControlleur->listEvents(); // Utilisation de $eventControlleur
+}
+
+
+
+// Fetch the list of events using your eventC class.
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -240,8 +253,16 @@ $events = $eventControlleur->listEvents(); // Fetch the list of events using you
     </div>
     <div class="col text-right">
       <a href="addEvent.php" class="btn btn-sm btn-primary">
+    
         <i class="fas fa-plus-circle"></i> Add Event
       </a>
+
+      
+      <input type="text" class="form-control" id="search_text" placeholder="search_text" name="search_text">
+                    <button type="submit" name="search" class="btn btn-primary me-2">Search</button>
+                    <button type="submit" name="tri" class="btn btn-primary me-2">Tri</button>
+
+
     </div>
   </div>
 </div>
@@ -285,6 +306,10 @@ $events = $eventControlleur->listEvents(); // Fetch the list of events using you
 
                       <a href="deleteEvent.php?id_event=<?= urlencode($event['id_event']); ?>">Delete</a>
 <!-- Dans backend/pages/tables.php -->
+
+
+
+
 <a href="addReservation.php">Reserver</a>
 
 
@@ -305,6 +330,15 @@ $events = $eventControlleur->listEvents(); // Fetch the list of events using you
       <a href="listReservation.php" class="btn btn-sm btn-primary">
         <i class="fas fa-plus-circle"></i> list Reservation
       </a>
+      <a href="export.php" class="btn btn-sm btn-primary">
+        <i class="fas fa-plus-circle"></i> exporter excel
+      </a>
+      <a href="historique.php" class="btn btn-sm btn-primary">  
+        <i class="fas fa-plus-circle"></i>Historique
+      </a>
+
+      <a href="stat.php" class="btn btn-primary">View Statistics</a>
+      
     </div>
 
       <footer class="footer pt-3  ">
