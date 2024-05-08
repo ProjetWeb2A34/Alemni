@@ -20,21 +20,34 @@
             padding: 0;
         }
         #container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 20px auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 {
+        h1 {
+            font-size:40px; /* Taille de la police */
+            color:#90953b; /* Couleur du texte */
+            text-align: center; /* Centrer le texte */
+            margin-top: 20px; /* Espacement en haut */
+            margin-bottom: 20px; /* Espacement en bas */
+            text-transform: uppercase; /* Convertir le texte en majuscules */
+            font-weight: bold; /* Gras */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Ombre portée */
+        }
+
+         h2 {
             text-align: center;
             margin-bottom: 20px;
         }
         table {
-            width: 100%;
+            width: 500%;
             margin-top: 20px;
             border-collapse: collapse;
+            color: #333;
+
         }
         th, td {
             border: 1px solid #ccc;
@@ -42,7 +55,8 @@
             text-align: left;
         }
         th {
-            background-color: #f8f9fa;
+            background-color:  #78853f; /* Couleur de fond gris clair pour les en-têtes de colonne */
+            color: #fff;
         }
         a {
             color: #007bff;
@@ -54,6 +68,7 @@
     </style>
 </head>
 <body>
+    
     <div class="hero_area">
         <header class="header_section">
             <div class="container">
@@ -108,7 +123,7 @@
 
         <div id="container">
             <h1>Liste des réservations</h1>
-            <table>
+            <table class=table>
                 <thead>
                     <tr>
                         <th>ID Réservation</th>
