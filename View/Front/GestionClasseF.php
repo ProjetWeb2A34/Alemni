@@ -49,7 +49,7 @@ $list = $classC->listClasses();
                                     foreach ($courses as $course) {
                                         // Make the course name a link to PDFGenerator.php with course name as parameter
                                         echo '<a href="PDFGenerator.php?course_name=' . urlencode($course['NomCours']) . '">' . $course['NomCours'] . '</a><br>';
-                                    }
+                                        echo '<a href="Calendar.php?course_name=' . urlencode($course['NomCours']) . '&session=' . urlencode($course['seance']) . '">📅</a><br>';                                    }
                                     ?>
                                 </td>
                             </tr>
@@ -61,6 +61,7 @@ $list = $classC->listClasses();
         </div>
     </div>
 </div>
+
 
 <?php
 include 'FooterF.php';

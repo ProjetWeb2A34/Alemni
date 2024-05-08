@@ -65,5 +65,5 @@ if(isset($_GET['course_name']) ) {
 
 
 <?php
-include 'FooterF.php';
+//include 'FooterF.php';
 ?>

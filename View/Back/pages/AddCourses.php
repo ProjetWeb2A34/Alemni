@@ -23,7 +23,8 @@ if(isset($_POST["ADD"])) {
             null, // id_cours will be auto-incremented
             $_POST["NomCours"],
             $_POST["NomTuteur"],
-            $_POST["id_classe"]
+            $_POST["id_classe"],
+            null
         );
         $coursC->addCourse($course);
         header('Location:ListClasse.php');
