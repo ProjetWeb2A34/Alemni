@@ -31,6 +31,19 @@ $list = $classC->listClasses();
                                 <td><?= $class['nb_etudiant']; ?></td>
                                 <td>
                                     <?php
+                                        /*// Get the list of courses for the current class
+                                        $courses = $classC->listCoursesForClass($class['id_classe']);
+                                        foreach ($courses as $course) {
+                                        // Generate a form with a hidden input for class ID and a submit button for each course
+                                    ?>
+                                        <form method="POST" action="PDFGenerator.php">
+                                        <input type="hidden" name="course" value="<?= $course['NomCours']; ?>">
+                                        <input type="submit" value="<?= $course['NomCours']; ?>" class="btn btn-link">
+                                        </form>
+                                    <?php
+                                            }*/
+                                    ?>
+                                    <?php
                                     // Get the list of courses for the current class
                                     $courses = $classC->listCoursesForClass($class['id_classe']);
                                     foreach ($courses as $course) {

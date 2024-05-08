@@ -6,23 +6,26 @@ include 'HeaderF.php';
 
 <?php
 // Check if the course name is provided in the URL parameter
-if(isset($_GET['course'])) {
+if(isset($_GET['course_name']) ) {
     // Get the course name from the URL parameter
-    $courseName = $_GET['course'];
+    
+    $courseName = $_GET['course_name'];
     
     // Map the course name to the corresponding PDF file
     $pdfFiles = [
-        'Math' => 'math.pdf',
-        'Math2' => 'math2.pdf',
-        'English' => 'english.pdf',
-        'Physique' => 'physique.pdf',
-        'Coding' => 'coding.pdf'
+        'Math' => 'images/Math.pdf',
+        'Math2' => 'images/math2.pdf',
+        'English' => 'images/english.pdf',
+        'Physique' => 'images/physique.pdf',
+        'Coding' => 'images/coding.pdf'
     ];
 
     // Check if the course name exists in the mapping
     if(array_key_exists($courseName, $pdfFiles)) {
         // Get the PDF file name
+        
         $pdfFile = $pdfFiles[$courseName];
+        
         
         // Set the appropriate headers for PDF file
         header("Content-type: application/pdf");
