@@ -19,7 +19,17 @@ if(isset($_GET['course_name']) ) {
         'Physique' => 'images/physique.pdf',
         'Coding' => 'images/coding.pdf'
     ];
+    if(array_key_exists($courseName, $pdfFiles)) {
+        // Get the PDF file name
+        $pdfFile = $pdfFiles[$courseName];
 
+        // Output the embed tag to display the PDF file
+        echo '<embed src="' . $pdfFile . '" type="application/pdf" width="100%" height="600px" />';
+    } else {
+        // If the course name is not found, display an error message
+        echo "PDF file not found for the course: $courseName";
+    }
+    /*
     // Check if the course name exists in the mapping
     if(array_key_exists($courseName, $pdfFiles)) {
         // Get the PDF file name
@@ -39,7 +49,7 @@ if(isset($_GET['course_name']) ) {
     } else {
         // If the course name is not found, display an error message
         echo "PDF file not found for the course: $courseName";
-    }
+    }*/
 } else {
     // If the course name is not provided in the URL parameter, display an error message
     echo "Course name is missing in the URL parameter";
