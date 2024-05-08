@@ -17,40 +17,28 @@ $list = $classC->listClasses();
                     <table class="table align-items-center justify-content-center mb-0">
                         <thead>
                             <tr>
-                                <!--<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>-->
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Class Name</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Number of Students</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Courses</th>
+                                <!--<th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Calendar</th>--> <!-- Added column for calendar -->
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($list as $class): ?>
                             <tr>
-                                <!--<td><?//= $class['id_classe'];?></td>-->
                                 <td><?= $class['NomClasse']; ?></td>
                                 <td><?= $class['nb_etudiant']; ?></td>
                                 <td>
                                     <?php
-                                        /*// Get the list of courses for the current class
-                                        $courses = $classC->listCoursesForClass($class['id_classe']);
-                                        foreach ($courses as $course) {
-                                        // Generate a form with a hidden input for class ID and a submit button for each course
-                                    ?>
-                                        <form method="POST" action="PDFGenerator.php">
-                                        <input type="hidden" name="course" value="<?= $course['NomCours']; ?>">
-                                        <input type="submit" value="<?= $course['NomCours']; ?>" class="btn btn-link">
-                                        </form>
-                                    <?php
-                                            }*/
-                                    ?>
-                                    <?php
-                                    // Get the list of courses for the current class
                                     $courses = $classC->listCoursesForClass($class['id_classe']);
                                     foreach ($courses as $course) {
-                                        // Make the course name a link to PDFGenerator.php with course name as parameter
                                         echo '<a href="PDFGenerator.php?course_name=' . urlencode($course['NomCours']) . '">' . $course['NomCours'] . '</a><br>';
-                                        echo '<a href="Calendar.php?course_name=' . urlencode($course['NomCours']) . '&session=' . urlencode($course['seance']) . '">📅</a><br>';                                    }
+                                    }
                                     ?>
+                                </td>
+                                <td>
+                                    <!-- Calendar icon linking to Calendar.php with id_classe parameter -->
+                                    <a href="Calendar.php?id_classe=<?= $class['id_classe']; ?>">📅</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -62,9 +50,6 @@ $list = $classC->listClasses();
     </div>
 </div>
 
-
 <?php
 include 'FooterF.php';
 ?>
-
-

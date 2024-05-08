@@ -14,10 +14,12 @@ if(isset($_GET['course_name']) ) {
     // Map the course name to the corresponding PDF file
     $pdfFiles = [
         'Math' => 'images/Math.pdf',
-        'Math2' => 'images/math2.pdf',
-        'English' => 'images/english.pdf',
-        'Physique' => 'images/physique.pdf',
-        'Coding' => 'images/coding.pdf'
+        'Math2' => 'images/Math2.pdf',
+        'English' => 'images/English.pdf',
+        'Physique' => 'images/Physique.pdf',
+        'French' => 'images/French.pdf',
+        'Arabic' => 'images/Arabic.pdf',
+        'Coding' => 'images/Coding.pdf'
     ];
     if(array_key_exists($courseName, $pdfFiles)) {
         // Get the PDF file name
