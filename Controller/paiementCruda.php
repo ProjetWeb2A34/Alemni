@@ -14,6 +14,29 @@ class paiementCrud
 			die('Erreur:' . $e->getMessage());
 		}
 	}
+    public function search($search_query = '') {
+        $sql = 'SELECT * FROM evenement';
+    
+        if (!empty($search_query)) {
+            $sql .= " WHERE num_cart LIKE ? OR email LIKE ?";
+        }
+    
+        $db = config::getConnexion();
+        
+        try {
+            $query = $db->prepare($sql);
+            if (!empty($search_query)) {
+                $search_param = "%$search_query%";
+                $query->bindParam(1, $search_param, PDO::PARAM_STR);
+                $query->bindParam(2, $search_param, PDO::PARAM_STR);
+            }
+            $query->execute();
+            $result = $query->fetchAll();
+            return $result;
+        } catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
+        }
+    }
 	/*function Afficherpaiement() {
 		$sql = "SELECT paiement.*, panier.prix FROM paiement JOIN panier ON paiement.idpai = panier.idpai";
 		$db = config::getConnexion();

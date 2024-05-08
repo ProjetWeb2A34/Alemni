@@ -4,6 +4,7 @@ include_once '../../Controller/panierC.php';
 $panierC = new panierC();
 $listepanier = $panierC->Afficherpanier();
 
+
 // Calculate total price
 $totalPrice = 0;
 ?>
@@ -12,13 +13,36 @@ $totalPrice = 0;
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>panier</title>
-    <link href="css/style.css" rel="stylesheet" />
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Alemni</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
 </head>
 
-<body class="panier">
+<body class="panier" class="sub_page">
+
+    <!--   tabeellllllll loul   -->
     <a href="indexPANIER1.html" class="link55">boutique</a>
     <a href="addpaiement.php" class="link55">paiement</a>
     <!--<input type="text" id="searchTerm" placeholder="search">-->
@@ -63,6 +87,10 @@ $totalPrice = 0;
             </tr>
         </table>
     </section>  
+
+
+    
 </body>
+
 
 </html>

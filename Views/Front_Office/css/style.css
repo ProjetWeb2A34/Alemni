@@ -97,7 +97,7 @@ samp{
 }
 .panier section{
   width: 70%;
-  background-color: #7a772d;
+  background-color: #ebead8;
   padding: 10px;
   border-radius:6px  ;
 
@@ -107,18 +107,19 @@ table{
   width: 100%;
   letter-spacing: 1px;
   font-size: 13px;
+  background-color: #f7f7f7;
 
 }
 th{padding: 10px 0;
   font-weight: 400;
 }
 td{
-  border-top:0.5px solid #d42929;
+  border-top:0.5px solid #4029d4;
   text-align: center;
   color: #0f0f0f;
 }
 tr{
-  border-bottom:0.5px solid #be1818;
+  border-bottom:0.5px solid #2318be;
 }
 .total th{
   border: 0;
