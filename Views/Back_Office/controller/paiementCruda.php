@@ -99,7 +99,7 @@ class paiementCrud
         }
     }
 	public function search($search_query = '') {
-        $sql = 'SELECT * FROM evenement';
+        $sql = 'SELECT * FROM paiement';
     
         if (!empty($search_query)) {
             $sql .= " WHERE num_cart LIKE ? OR email LIKE ?";

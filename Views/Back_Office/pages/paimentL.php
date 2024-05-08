@@ -1,5 +1,11 @@
 <?php
 include_once '../../../Controller/paiementCruda.php';
+// ______________________________
+$search_query = ''; // Initialisez la variable de recherche
+
+if (isset($_POST['search_query'])) {
+    $search_query = $_POST['search_query'];
+}
 
 // Define getPrixFromPanier function
 function getPrixFromPanier($prix_p) {
@@ -19,6 +25,7 @@ function getPrixFromPanier($prix_p) {
 
 $paiementCrud = new paiementCrud();
 $listepaiement = $paiementCrud->Afficherpaiement(); 
+$listepaiement = $paiementCrud->search($search_query);
 
 include 'Header.php';
 ?>
@@ -68,9 +75,10 @@ include 'Header.php';
 <a href="index.php">pour envoyer mail</a>
 <p>
 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
-            <input type="text" name="search_query" class="search-input" placeholder="Cherchez par num carte ou email" value="<?php echo htmlspecialchars($search_query); ?>">
-            <button type="submit" class="search-button"><i class="fas fa-search icon"></i></button>
-        </form></p>
+    <input type="text" name="search_query" class="search-input" placeholder="Cherchez par num carte ou email" value="<?php echo isset($search_query) ? htmlspecialchars($search_query) : ''; ?>">
+    <button type="submit" class="search-button"><i class="fas fa-search icon"></i></button>
+</form>
+</p>
 
 </div>
 <?php include 'Footer.php'; ?>

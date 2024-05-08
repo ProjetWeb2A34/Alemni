@@ -15,10 +15,10 @@ class paiementCrud
 		}
 	}
     public function search($search_query = '') {
-        $sql = 'SELECT * FROM evenement';
+        $sql = 'SELECT * FROM paiement';
     
         if (!empty($search_query)) {
-            $sql .= " WHERE num_cart LIKE ? OR email LIKE ?";
+            $sql .= " WHERE num_cart LIKE ?";
         }
     
         $db = config::getConnexion();
@@ -28,7 +28,6 @@ class paiementCrud
             if (!empty($search_query)) {
                 $search_param = "%$search_query%";
                 $query->bindParam(1, $search_param, PDO::PARAM_STR);
-                $query->bindParam(2, $search_param, PDO::PARAM_STR);
             }
             $query->execute();
             $result = $query->fetchAll();
