@@ -158,6 +158,42 @@ public function countEventsByPriceRange()
         throw new Exception('Erreur lors du comptage des événements par tranche de prix : ' . $e->getMessage());
     }
 }
+public function researcherNom_event($nom_event)
+{
+    // Prepare SQL query to select users by role
+    $sql = "SELECT * FROM event WHERE nom_event = :nom_event";
+    
+    // Get database connection
+    $db = config::getConnexion(); // Assuming config::getConnexion() returns a database connection object
+    
+    try {
+        // Prepare and execute the SQL query
+        $query = $db->prepare($sql);
+        $query->bindParam(':nom_event', $nom_event);
+        $query->execute();
+
+        // Fetch results
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    } catch (PDOException $e) {
+        // Handle exceptions
+        die('Error: ' . $e->getMessage());
+    }
+}
+function trierEvent()
+{
+    $sql = "SELECT * from event ORDER BY prix_event ASC";
+    $db = config::getConnexion();
+    try {
+        $req = $db->query($sql);
+        return $req;
+    } catch (Exception $e)
+    {
+        die('Erreur: ' . $e->getMessage());
+    }
+}
+
 
 
 

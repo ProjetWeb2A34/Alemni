@@ -21,11 +21,11 @@ $events = $eventControlleur->listEvents();
 
 
 if (isset($_REQUEST['search'])) {
-  $listeEvents = $eventControlleur->searchevenement($_POST['search_text']); // Utilisation de $eventControlleur
+  $events = $eventControlleur->researcherNom_event($_POST['search_text']); // Utilisation de $eventControlleur
 } elseif (isset($_REQUEST['tri'])) {
-  $listeEvents = $eventControlleur->trievent(); // Utilisation de $eventControlleur
+  $events = $eventControlleur->trierEvent(); // Utilisation de $eventControlleur
 } else {
-  $listeEvents = $eventControlleur->listEvents(); // Utilisation de $eventControlleur
+  $events = $eventControlleur->listEvents(); // Utilisation de $eventControlleur
 }
 
 
@@ -151,7 +151,7 @@ if (isset($_REQUEST['search'])) {
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Type here...">
+              <input type="text" id="nom_event_recherche" class="form-control" placeholder="Type here...">
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
@@ -257,12 +257,13 @@ if (isset($_REQUEST['search'])) {
         <i class="fas fa-plus-circle"></i> Add Event
       </a>
 
-      
+      <form method="POST" action="">
       <input type="text" class="form-control" id="search_text" placeholder="search_text" name="search_text">
                     <button type="submit" name="search" class="btn btn-primary me-2">Search</button>
                     <button type="submit" name="tri" class="btn btn-primary me-2">Tri</button>
+                    
 
-
+</form>
     </div>
   </div>
 </div>
